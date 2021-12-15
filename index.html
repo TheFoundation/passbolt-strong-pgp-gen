@@ -1,5 +1,17 @@
 <!DOCTYPE html>
 <html><head>
+  <style>
+    .passphrase{
+        margin-top: 5%;
+        text-align :center;
+    }
+
+    .displayBadge{
+        margin-top: 5%;
+        display: none;
+        text-align :center;
+    }
+</style>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <!-- Set charset to UTF-8 -->
@@ -22,7 +34,6 @@
     <script type="text/javascript" src="index_files/js/kbpgp.js"></script>
     <script type="text/javascript" src="index_files/js/FileSaver.js"></script>
     <script type="text/javascript" src="index_files/js/pgpkeygen.js"></script>
-
     <!--[if IE 9]>
         <script type="text/javascript" src="index_files/js/placeholder.js"></script>
     <![endif]-->
@@ -54,7 +65,7 @@
                 <div class="page-header">
                     <h1 class="title">PGP Suite (Passbolt)</h1>
                     A simple and easy to use client-side PGP system<br>
-                    allowing only secure keys for passbolt ( currently RSA-8192 )<br>
+                    allowing only secure keys for passbolt ( currently RSA-8192/RSA-4096 )<br>
                     Hint: use arrow keys in Dropdown menus
                 </div>
 
@@ -136,6 +147,8 @@
                                                         <select class="form-control" name="bitlength" id="bitlength" title="" required="" disabled="disabled" data-original-title="Select a key size" data-cip-id="cIPJQ342845640">
                                                             <option value="" class="disabled" selected="selected">Key size</option>
                                                             <option value="8192" selected="selected">8192 bit (Recommended)</option>
+                                                            <option value="4096"                    >4096 bit (Recommended)</option>
+
                                                         </select>
                                                         <div class="input-group-addon">Required</div>
                                                     </div>
@@ -162,13 +175,17 @@
                                                     <div class="input-group">
                                                         <div class="input-group-addon"><span class="glyphicon glyphicon-text-background" aria-hidden="true"></span></div>
                                                         <input class="form-control" name="passphrase" placeholder="Passphrase" id="passphrase" pattern=".{5,}" title="" required="" data-original-title="Enter a passphrase; at least 5 characters" data-cip-id="passphrase" type="password">
+                                                        <br>
+                                                        <span id="StrengthDisp" class="badge displayBadge">Weak</span>
+                                                        <br>
+
                                                         <div class="input-group-addon">Required</div>
                                                     </div>
                                                     <span id="helpBlock" class="help-block"><a href="#" data-toggle="popover" title="" data-content="Passphrase is a like a password to protect your private PGP key. This password offers an extra layer of protection in case someone manage to steal your public PGP key. Please pick a password you will remember, because if you forget this password, there is no way to recover your password and no way for you to decrypt PGP messages sent to you!" data-original-title="Passphrase">Passphrase: What is this?</a></span>
                                                 </div>
 
                                                 <input value="Generate keys" id="generate_keys_btn" class="btn btn-primary btn-lg btn-block send" name="send" type="submit">
-                                                <a href="https://thechiefmeat.github.io/pgp" id="start_again_btn" class="btn btn-link btn-block hide">Click here to regenerate another pair of key</a>
+                                                <a href="https://hefoundation.github.io/passbolt-strong-rsa-gen" id="start_again_btn" class="btn btn-link btn-block hide">Click here to regenerate another pair of key</a>
                                             </form>
                                         </div>
                                     </div>
@@ -618,4 +635,7 @@ your device.
 
 
 <div class="kphc cip-genpw-icon cip-icon-key-big" style="z-index: 3; top: 579.2px; left: 672.317px;"></div><div id="kphc-pw-dialog" class="kphc"><div style="display: none;" tabindex="-1" role="dialog" class="ui-dialog ui-corner-all ui-widget ui-widget-content ui-front ui-draggable" aria-describedby="cip-genpw-dialog" aria-labelledby="ui-id-1"><div class="ui-dialog-titlebar ui-corner-all ui-widget-header ui-helper-clearfix ui-draggable-handle"><span id="ui-id-1" class="ui-dialog-title">Password Generator</span><button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="×"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>×</button></div><div id="cip-genpw-dialog" class="ui-dialog-content ui-widget-content"><div class="cip-genpw-clearfix"><button id="cip-genpw-btn-generate" class="b2c-btn b2c-btn-primary b2c-btn-small" style="float: left;">Generate</button><button id="cip-genpw-btn-clipboard" class="b2c-btn b2c-btn-small" style="float: right;">Copy to clipboard</button></div><div class="b2c-input-append cip-genpw-password-frame"><input id="cip-genpw-textfield-password" class="cip-genpw-textfield" type="text"><span class="b2c-add-on" id="cip-genpw-quality">123 Bits</span></div><label class="cip-genpw-label"><input id="cip-genpw-checkbox-next-field" class="cip-genpw-checkbox" type="checkbox"> also fill in the next password-field</label><button id="cip-genpw-btn-fillin" class="b2c-btn b2c-btn-small">Fill in &amp; copy to clipboard</button></div></div></div></body></html>
+
 <script type="text/javascript" >populateKeysizeDropdown();</script>
+
+<script type="text/javascript" src="index_files/js/passwdstrength.js"></script>

@@ -187,9 +187,9 @@ var populateKeysizeDropdown = function() {
 
 	/* Accepted RSA key sizes */
 	rsa_bitlengths = [
-		{"value": "", "class":"disabled", "text":"Key Size", "selected":null},
-		{"value": "8192", "class":null, "text":"8192 bits (super secure, (Recommended))", "selected":"selected"},
-		//{"value": "4096", "class":null, "text":"4096 bits ( somehow secure )", "selected":null},
+		{"value": "", "class":"disabled", "text":"Key Size", "selected":"selected"},
+		{"value": "8192", "class":null, "text":"8192 bits (secure+ , 30min+ (Recommended))", "selected":null},
+		{"value": "4096", "class":null, "text":"4096 bits (secure  , 2-5min+ )", "selected":null},
 	]
 
 	/* Accepted ECC key sizes */
