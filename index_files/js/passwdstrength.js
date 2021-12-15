@@ -4,8 +4,6 @@
 
     // traversing the DOM and getting the input and span using their IDs
 
-    let password = document.getElementById('passphrase')
-    let strengthBadge = document.getElementById('StrengthDisp')
 
     // The strong and weak password Regex pattern checker
     // between 6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter
@@ -21,6 +19,9 @@
 
     function StrengthChecker(PasswordParameter){
       var validate=[];
+      let password = document.getElementById('passphrase')
+      let strengthBadge = document.getElementById('StrengthDisp')
+      strengthBadge.style.display= 'block'
 
         // We then change the badge's color and text based on the password strength
         if(       bulletPassword.test(PasswordParameter)) {
@@ -54,7 +55,7 @@
 
 
 
-    strengthBadge.style.display= 'block'
+//    strengthBadge.style.display= 'block'
 
     // Adding an input event listener when a user types to the  password input
 
