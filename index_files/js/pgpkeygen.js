@@ -187,20 +187,18 @@ var populateKeysizeDropdown = function() {
 
 	/* Accepted RSA key sizes */
 	rsa_bitlengths = [
-		{"value": "", "class":"disabled", "text":"Key Size", "selected":"selected"},
-		{"value": "1024", "class":null, "text":"1024 bits (good for testing purposes)", "selected":null},
-		{"value": "2048", "class":null, "text":"2048 bits (secure)", "selected":null},
-		{"value": "4096", "class":null, "text":"4096 bits (more secure (Recommended))", "selected":null},
-		{"value": "8192", "class":null, "text":"8192 bits (super secure, super slow)", "selected":null},
+		{"value": "", "class":"disabled", "text":"Key Size", "selected":null},
+		{"value": "8192", "class":null, "text":"8192 bits (super secure, super slow (Recommended))", "selected":"selected"},
+		{"value": "4096", "class":null, "text":"4096 bits (more secure )", "selected":null},
 	]
 
 	/* Accepted ECC key sizes */
 	ecc_bitlengths = [
-		{"value": "", "class":"disabled", "text":"Key Size", "selected":"selected"},
+		{"value": "", "class":"disabled", "text":"Key Size", "selected":null},
 		//{"value": "163", "class":null, "text":"163 bits (good for testing purposes)", "selected":null},
 		//{"value": "256", "class":null, "text":"256 bits (secure)", "selected":null},
-		{"value": "384", "class":null, "text":"384 bits (secure)", "selected":null},
-		//{"value": "512", "class":null, "text":"512 bits (even more secure)", "selected":null},
+		//{"value": "384", "class":null, "text":"384 bits (secure)", "selected":null},
+		{"value": "512", "class":null, "text":"512 bits (even more secure)", "selected":"selected"},
 	]
 
 	/* Empty existing dropdown list */

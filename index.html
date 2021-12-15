@@ -4,7 +4,7 @@
 
     <!-- Set charset to UTF-8 -->
     <meta charset="utf-8">
-    
+
     <div class="title">
     <title>PGP Suite</title>
     </div>
@@ -22,7 +22,7 @@
     <script type="text/javascript" src="index_files/js/kbpgp.js"></script>
     <script type="text/javascript" src="index_files/js/FileSaver.js"></script>
     <script type="text/javascript" src="index_files/js/pgpkeygen.js"></script>
-    
+
     <!--[if IE 9]>
         <script type="text/javascript" src="index_files/js/placeholder.js"></script>
     <![endif]-->
@@ -34,7 +34,6 @@
 </style></head>
 
 <body>
-	<div id="filename_temp" style="display:none;" title="This is temp div for saving here a file name if file was been loaded by input.">filename.txt</div>
     <!--status notification-->
     <div class="hidden">
         <div class="alert alert-success fade in" id="vrSuccess">
@@ -47,19 +46,23 @@
             <button aria-hidden="true" class="close" data-dismiss="alert" type="button">&times;</button><span id="vrAddrLabel"></span>
         </div>
     </div>
+
     <div class="container">
         <div class="row content">
             <div class="col-md-12">
 
                 <div class="page-header">
-                    <h1 class="title">PGP Suite</h1>
-                    A simple and easy to use client-side PGP system
+                    <h1 class="title">PGP Suite (Passbolt)</h1>
+                    A simple and easy to use client-side PGP system<br>
+                    allowing only secure keys ( currently RSA-8192 /ECC512 )<br>
+                    Hint: use arrow keys in Dropdown menus
                 </div>
+
                 <div class="tabbable">
 
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#generator" aria-controls="generator" role="tab" data-toggle="tab">Generate PGP Keys</a></li>
+                        <li role="presentation" class="active"><a href="#generator" aria-controls="generator" role="tab" data-toggle="tab">Generate PGP Key</a></li>
                         <li role="presentation"><a href="#sign" aria-controls="sign" role="tab" data-toggle="tab">Sign</a></li>
                         <li role="presentation"><a href="#verify" aria-controls="verify" role="tab" data-toggle="tab">Verify</a></li>
                         <li role="presentation"><a href="#signencrypt" aria-controls="sign" role="tab" data-toggle="tab">(Sign+)Encrypt</a></li>
@@ -73,6 +76,7 @@
 
                     <!-- Tab panes -->
                     <div class="tab-content">
+
                         <!-- Key gen -->
                         <div role="tabpanel" class="tab-pane active" id="generator">
 
@@ -117,9 +121,9 @@
                                                     <div class="input-group">
                                                         <div class="input-group-addon"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></div>
                                                         <select class="form-control" name="algorithm" id="algorithm" title="" required="" data-original-title="Choose an encryption algorithm" data-cip-id="cIPJQ342845639">
-                                                            <option value="" disabled="disabled" selected="selected" class="disabled">Algorithm</option>
-                                                            <option value="rsa">RSA (Recommended)</option>
-                                                            <option value="ecc">ECC (Elliptic Curve Cryptography)</option>
+                                                            <option value="" disabled="disabled"  class="disabled">Algorithm</option>
+                                                            <option value="rsa" selected="selected">RSA (Recommended)</option>
+                                                            <option value="ecc">ECC (Elliptic Curve Cryptography)</option> 
                                                         </select>
                                                         <div class="input-group-addon">Required</div>
                                                     </div>
@@ -131,6 +135,7 @@
                                                         <div class="input-group-addon"><span class="glyphicon glyphicon-signal" aria-hidden="true"></span></div>
                                                         <select class="form-control" name="bitlength" id="bitlength" title="" required="" disabled="disabled" data-original-title="Select a key size" data-cip-id="cIPJQ342845640">
                                                             <option value="" class="disabled" selected="selected">Key size</option>
+                                                            <option value="8192" selected="selected">8192 bit (Recommended)</option>
                                                         </select>
                                                         <div class="input-group-addon">Required</div>
                                                     </div>
@@ -214,6 +219,7 @@
                                             <textarea class="form-control message" id="sign-private-key" rows="7" placeholder="Paste your private key here (ECC or RSA keys)." title="ECC and RSA algorithms working both for sign and verify. You can use ECC keys here."></textarea>
                                             <input type='file' onchange='openFile(event, "sign-private-key")'>
                                             <br>
+
                                             <div class="input-group">
                                                 <div class="input-group-addon"><span class="glyphicon glyphicon-text-background" aria-hidden="true"></span></div>
                                                 <input class="form-control" name="sign-passphrase" placeholder="Passphrase for private key" id="sign-passphrase" pattern=".{5,}" title="Enter your private key passphrase" type="password">
@@ -230,7 +236,7 @@
                                         </div>
                                         <div class="panel-body">
                                             <textarea class="form-control message" rows="7" id="sign-plain-text" placeholder="Write your message here."></textarea>
-                                            <input id="sign_src" type='file' onchange='openFile(event, "sign-plain-text")'><br>
+                                            <input type='file' onchange='openFile(event, "sign-plain-text")'><br>
                                         </div>
                                     </div>
 
@@ -241,13 +247,12 @@
                                         <div class="panel-heading">
                                             <h3 class="panel-title">Signed message</h3>
                                         </div>
-										<div id="vrAlert_signed"></div>
                                         <div class="panel-body">
                                         <textarea class="form-control message" rows="7" id="signed-text" placeholder="Here you'll see the signed message." readonly="readonly"></textarea>
                                         <br>
-                                        <a id="download-signed-text" style="display:none;" href="javascript:void(0);" title="Download signed text.">
-											<button>Download signed message</button>
-										</a>
+                                        <a id="download-signed-text" style="display:none;" href="javascript:void(0);" title="Download signed text."
+                                        onclick="linkText('signed-text', 'download-signed-text', 'signed_text.txt');
+                                        return false;"><button>Download signed message</button></a>
                                         </div>
                                     </div>
                                 </div>
@@ -291,22 +296,18 @@
                                         </div>
                                         <div id="vrAlert"></div>
                                         <div class="panel-body">
-                                            <textarea class="form-control message" rows="7" id="pure-text" placeholder="Here you'll see the raw message, if this signed and will be verified." readonly=""></textarea>
+                                            <textarea class="form-control message" rows="7" id="pure-text" placeholder="Here you'll see the raw message, if signed it will be verified." readonly=""></textarea>
                                             <br>
-                                            <a id="download_verified_as_binary" style="display:none; float: right" href="javascript:void(0);"
-											title="If in textarea base64 encoded file content - you can download this as binary RAW-data.">
-												Download as binary
-											</a>
-											<a id="download-pure-text" style="display:none;" href="javascript:void(0);" title="Download pure text">
-												<button>Download pure message</button>
-											</a>
+                                            <a id="download-pure-text" style="display:none;" href="javascript:void(0);" title="Download pure text"
+                                            onclick="linkText('pure-text', 'download-pure-text', 'pure_text.txt');
+                                            return false;"><button>Download pure message</button></a>
                                         </div>
                                     </div>
                                 </div>
                              </div>
                         </div>
                         <!-- end Verify message -->
-                        
+
                         <!-- Sign+Encrypt message -->
                         <div role="tabpanel" class="tab-pane" id="signencrypt">
                              <div class="row generator">
@@ -364,9 +365,9 @@
                                             <textarea class="form-control message" style="display: none;" rows="7" id="encrypted-text" placeholder="this is hidden textarea to copy from here an encrypted text" readonly="readonly"></textarea>
                                             <textarea class="form-control message" rows="7" id="signencrypt-text" placeholder="Here you'll see the signed and encrypted message." readonly="readonly"></textarea>
                                             <br>
-                                            <a id="download-signencrypt-text" style="display:none;"  href="javascript:void(0);" title="Download pure text">
-												<button>Download encrypted message</button>
-											</a>
+                                            <a id="download-signencrypt-text" style="display:none;"  href="javascript:void(0);" title="Download pure text"
+                                            onclick="linkText('signencrypt-text', 'download-signencrypt-text', 'signed_and_encrypted_text.txt');
+                                            return false;"><button>Download encrypted message</button></a>
                                         </div>
                                     </div>
                                 </div>
@@ -384,10 +385,7 @@
                                             <h3 class="panel-title">Receiver's Private Key (decryption)</h3>
                                         </div>
                                         <div class="panel-body">
-                                            <textarea class="form-control message" id="decryption-private-key" rows="7" placeholder="Paste the private key here to decrypt. RSA key only."
-title="If you want to check signature only, without decrypt.
-Paste here some another private key and signer's pub in next field.
-Or paste here priv, which correspoding the signer's pub, without filling next field."></textarea>
+                                            <textarea class="form-control message" id="decryption-private-key" rows="7" placeholder="Paste the private key here to decrypt. RSA key only."></textarea>
                                             <input type='file' onchange='openFile(event, "decryption-private-key")'><br>
                                             <br>
 
@@ -402,7 +400,7 @@ Or paste here priv, which correspoding the signer's pub, without filling next fi
                                           <h3 class="panel-title">Signer's Public Key</h3>
                                       </div>
                                       <div class="panel-body">
-                                          <textarea class="form-control message" id="signer_public_key" rows="7" placeholder="Paste the signer's public key here, if the message is signed. This can be ECC key." title="Or leave this field empty, if message is without signature."></textarea>
+                                          <textarea class="form-control message" id="signer_public_key" rows="7" placeholder="Paste the signer's public key here if the message is signed. This can be ECC key." title="Or leave this field empty, if message is without signature."></textarea>
                                           <input type='file' onchange='openFile(event, "signer_public_key")'><br>
                                           <br>
                                       </div>
@@ -438,12 +436,9 @@ this will not be verified successfully.">Decrypt the message (and verify signatu
                                             <div id="vrAlert2"></div>
                                             <textarea class="form-control message" rows="7" id="decryption-decrypted-text" placeholder="Here you'll see the decrypted message." readonly="readonly"></textarea>
                                             <br>
-                                            <a id="download_decrypt_verify_as_binary" style="display:none; float: right" href="javascript:void(0);"
-											title="If in textarea base64 encoded file content - you can download this as binary RAW-data.">
-												Download as binary
-											</a>											<a id="download-decrypted-text" style="display:none;" href="javascript:void(0);" title="Download pure text">
-												<button>Download decrypted text.</button>
-											</a>
+                                            <a id="download-decrypted-text" style="display:none;" href="javascript:void(0);" title="Download pure text"
+                                            onclick="linkText('decryption-decrypted-text', 'download-decrypted-text', 'decrypted_text.txt');
+                                            return false;"><button>Download decrypted text.</button></a>
                                         </div>
                                     </div>
                                 </div>
@@ -563,24 +558,6 @@ your device.
                                         </div>
                                     </div>
                                 </div>
-								<div class="panel panel-default">
-                                    <div class="panel-heading" role="tab" id="headingSix">
-                                        <h4 class="panel-title">
-        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
-          I already possess a PGP key, but it doesn't work with PGP Suite?
-        </a>
-      </h4>
-                                    </div>
-                                    <div id="collapseSix" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingSix">
-                                        <div class="panel-body">
-										For PGP keys to work with PGP Suite, they require  SSH Authentication so PGP Suite can then use them, this is
-										usually done when the key is generated.
-										
-										PGP Suite automatically adds SSH Authentication to generated
-										PGP Suite keys.
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
 
@@ -588,9 +565,8 @@ your device.
 
                         <!-- About -->
                         <div role="tabpanel" class="tab-pane" id="about">
-						    <blockquote>PGP Suite is a data encryption and decryption computer program that provides cryptographic privacy and authentication for data communication. PGP Suite supports both message and file signing and encryption.
-						   
-						   <br></br>
+                           <blockquote>Pretty Good Privacy (PGP) is a data encryption and decryption computer program
+                                       that provides cryptographic privacy and authentication for data communication.
                                        PGP is often used for signing, encrypting, and decrypting texts, e-mails, files,
                                        directories, and whole disk partitions and to increase the security of e-mail
                                        communications. It was created by Phil Zimmermann in 1991. PGP and similar
@@ -612,11 +588,8 @@ your device.
                             </p>
 
                             <p>
-                                This project is a fork of Heiswayi Nrird's PGP Suite. Matej Ramuta forked it
-                                and added message encryption and decryption.<br>
-								TheChiefMeat added sign only mode, sign+encrypt mode as well as support for 8192 RSA keys.<br>
-								username1565 Added PGP key verification, file selection as well as program icons,
-								file uploading and downloading for textareas, notify message, and base64 encoding for files.
+                                This project is a fork of Heiswayi Nrird's PGP Key Generator. Matej Ramuta forked it
+                                and added message encryption and decryption. TheChiefMeat added sign only mode, sign+encrypt mode as well as support for 8192 RSA keys. username1565 Added PGP key verification, file selection as well as program icons.
                             </p>
 
                             <p>
@@ -629,7 +602,7 @@ your device.
                                 <li>Fork: <a href="https://github.com/ramuta/pgp">Ramuta</a></li>
                 <li>Fork: <a href="https://github.com/TheChiefMeat/pgp">TheChiefMeat</a></li>
                             </ul>
-                            
+
                             <p>
                             You can find an offline version <a href="https://github.com/TheChiefMeat/pgp/releases/latest">here, maintained by TheChiefMeat.</a></p>
                             <p>
@@ -650,3 +623,4 @@ your device.
 
 
 <div class="kphc cip-genpw-icon cip-icon-key-big" style="z-index: 3; top: 579.2px; left: 672.317px;"></div><div id="kphc-pw-dialog" class="kphc"><div style="display: none;" tabindex="-1" role="dialog" class="ui-dialog ui-corner-all ui-widget ui-widget-content ui-front ui-draggable" aria-describedby="cip-genpw-dialog" aria-labelledby="ui-id-1"><div class="ui-dialog-titlebar ui-corner-all ui-widget-header ui-helper-clearfix ui-draggable-handle"><span id="ui-id-1" class="ui-dialog-title">Password Generator</span><button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="×"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>×</button></div><div id="cip-genpw-dialog" class="ui-dialog-content ui-widget-content"><div class="cip-genpw-clearfix"><button id="cip-genpw-btn-generate" class="b2c-btn b2c-btn-primary b2c-btn-small" style="float: left;">Generate</button><button id="cip-genpw-btn-clipboard" class="b2c-btn b2c-btn-small" style="float: right;">Copy to clipboard</button></div><div class="b2c-input-append cip-genpw-password-frame"><input id="cip-genpw-textfield-password" class="cip-genpw-textfield" type="text"><span class="b2c-add-on" id="cip-genpw-quality">123 Bits</span></div><label class="cip-genpw-label"><input id="cip-genpw-checkbox-next-field" class="cip-genpw-checkbox" type="checkbox"> also fill in the next password-field</label><button id="cip-genpw-btn-fillin" class="b2c-btn b2c-btn-small">Fill in &amp; copy to clipboard</button></div></div></div></body></html>
+<script type="text/javascript" >populateKeysizeDropdown();</script>
