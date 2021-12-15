@@ -2,9 +2,11 @@
 
 A simple and easy to use PGP system
 
-**URL:** https://thechiefmeat.com/pgp/ , https://username1565.github.io/pgp/
+**URL:** https://thefoundation.github.io/pgp/
 
-**Offline Version:** https://github.com/TheChiefMeat/pgp/releases/latest
+( weak version: https://thechiefmeat.com/pgp/ , https://username1565.github.io/pgp/ )
+
+**Offline Version:** https://github.com/TheFoundation/pgp/releases/latest
 
 ## About this program
 
