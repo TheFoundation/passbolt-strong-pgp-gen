@@ -34,6 +34,7 @@
     <script type="text/javascript" src="index_files/js/kbpgp.js"></script>
     <script type="text/javascript" src="index_files/js/FileSaver.js"></script>
     <script type="text/javascript" src="index_files/js/pgpkeygen.js"></script>
+
     <!--[if IE 9]>
         <script type="text/javascript" src="index_files/js/placeholder.js"></script>
     <![endif]-->
@@ -144,10 +145,11 @@
                                                     <label class="sr-only" for="bitlength">Bit Length</label>
                                                     <div class="input-group">
                                                         <div class="input-group-addon"><span class="glyphicon glyphicon-signal" aria-hidden="true"></span></div>
-                                                        <select class="form-control" name="bitlength" id="bitlength" title="" required="" disabled="disabled" data-original-title="Select a key size" data-cip-id="cIPJQ342845640">
-                                                            <option value="" class="disabled" >Key size</option>
-                                                            <option value="8192" selected="selected">8192 bit (Recommended)</option>
-                                                            <option value="4096"                    >4096 bit (Recommended)</option>
+                                                        <div class="input-group-addon">Key Size:</div>
+                                                        <select class="form-control" name="bitlength" id="bitlength" title="" required=""  data-original-title="Select a key size" data-cip-id="cIPJQ342845640"> <!--disabled="disabled"-->
+                                                            <!-- <option value="" disabled="disabled"  class="disabled"  >Key size</option> -->
+                                                            <option value="8192" selected="selected" >8192 bit </option>
+                                                            <option value="4096" >4096 bit </option>
 
                                                         </select>
                                                         <div class="input-group-addon">Required</div>
@@ -172,13 +174,13 @@
 
                                                 <div class="form-group">
                                                     <label class="sr-only" for="passphrase">Passphrase</label>
+                                                    <div class="form-group">
+                                                    <span id="StrengthDisp" class="badge displayBadge">Weak</span>
+                                                    <script type="text/javascript" src="index_files/js/passwdstrength.js"></script>
+                                                  </div>
                                                     <div class="input-group">
                                                         <div class="input-group-addon"><span class="glyphicon glyphicon-text-background" aria-hidden="true"></span></div>
-                                                        <input class="form-control" name="passphrase" placeholder="Passphrase" id="passphrase" pattern=".{5,}" title="" required="" data-original-title="Enter a passphrase; at least 5 characters" data-cip-id="passphrase" type="password">
-                                                        <br>
-                                                        <span id="StrengthDisp" class="badge displayBadge">Weak</span>
-                                                        <br>
-
+                                                        <input class="form-control" name="passphrase" placeholder="Passphrase" id="passphrase" pattern=".{5,}" title="" onkeyup="StrengthChecker(this.value)" required="" data-original-title="Enter a passphrase; at least 10 characters upper and lowercase and digits add special characters to harden your passphrase " data-cip-id="passphrase" type="password">
                                                         <div class="input-group-addon">Required</div>
                                                     </div>
                                                     <span id="helpBlock" class="help-block"><a href="#" data-toggle="popover" title="" data-content="Passphrase is a like a password to protect your private PGP key. This password offers an extra layer of protection in case someone manage to steal your public PGP key. Please pick a password you will remember, because if you forget this password, there is no way to recover your password and no way for you to decrypt PGP messages sent to you!" data-original-title="Passphrase">Passphrase: What is this?</a></span>
@@ -637,5 +639,3 @@ your device.
 <div class="kphc cip-genpw-icon cip-icon-key-big" style="z-index: 3; top: 579.2px; left: 672.317px;"></div><div id="kphc-pw-dialog" class="kphc"><div style="display: none;" tabindex="-1" role="dialog" class="ui-dialog ui-corner-all ui-widget ui-widget-content ui-front ui-draggable" aria-describedby="cip-genpw-dialog" aria-labelledby="ui-id-1"><div class="ui-dialog-titlebar ui-corner-all ui-widget-header ui-helper-clearfix ui-draggable-handle"><span id="ui-id-1" class="ui-dialog-title">Password Generator</span><button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close" title="×"><span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>×</button></div><div id="cip-genpw-dialog" class="ui-dialog-content ui-widget-content"><div class="cip-genpw-clearfix"><button id="cip-genpw-btn-generate" class="b2c-btn b2c-btn-primary b2c-btn-small" style="float: left;">Generate</button><button id="cip-genpw-btn-clipboard" class="b2c-btn b2c-btn-small" style="float: right;">Copy to clipboard</button></div><div class="b2c-input-append cip-genpw-password-frame"><input id="cip-genpw-textfield-password" class="cip-genpw-textfield" type="text"><span class="b2c-add-on" id="cip-genpw-quality">123 Bits</span></div><label class="cip-genpw-label"><input id="cip-genpw-checkbox-next-field" class="cip-genpw-checkbox" type="checkbox"> also fill in the next password-field</label><button id="cip-genpw-btn-fillin" class="b2c-btn b2c-btn-small">Fill in &amp; copy to clipboard</button></div></div></div></body></html>
 
 <script type="text/javascript" >populateKeysizeDropdown();</script>
-
-<script type="text/javascript" src="index_files/js/passwdstrength.js"></script>
