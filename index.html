@@ -174,14 +174,15 @@
 
                                                 <div class="form-group">
                                                     <label class="sr-only" for="passphrase">Passphrase</label>
-                                                    <div class="form-group">
-                                                    <span id="StrengthDisp" class="badge displayBadge">Weak</span>
-                                                  </div>
+
                                                     <div class="input-group">
                                                         <div class="input-group-addon"><span class="glyphicon glyphicon-text-background" aria-hidden="true"></span></div>
                                                         <input class="form-control" name="passphrase" placeholder="Passphrase" id="passphrase" pattern=".{5,}" title="" onkeyup="StrengthChecker(this.value)" required="" data-original-title="Enter a passphrase; at least 10 characters upper and lowercase and digits add special characters to harden your passphrase " data-cip-id="passphrase" type="password">
                                                         <div class="input-group-addon">Required</div>
                                                     </div>
+                                                    <div class="form-group">
+                                                    <span id="StrengthDisp" class="badge displayBadge">Weak</span>
+                                                  </div>
                                                     <span id="helpBlock" class="help-block"><a href="#" data-toggle="popover" title="" data-content="Passphrase is a like a password to protect your private PGP key. This password offers an extra layer of protection in case someone manage to steal your public PGP key. Please pick a password you will remember, because if you forget this password, there is no way to recover your password and no way for you to decrypt PGP messages sent to you!" data-original-title="Passphrase">Passphrase: What is this?</a></span>
                                                 </div>
 
